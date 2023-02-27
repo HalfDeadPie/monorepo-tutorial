@@ -3,10 +3,12 @@ import logo from "./logo.svg";
 import "./App.css";
 import _ from "lodash";
 import { QueryPayload } from "@my-namespace/simple-shared-data";
+import DarkMode from './react-dark-mode/src/DarkMode';
 
 function App() {
   return (
     <div className="App">
+      <DarkMode />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
