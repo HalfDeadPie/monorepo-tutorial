@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { projectAPI } from './projectAPI';
-import ProjectDetail from './ProjectDetail';
-import { Project } from './Project';
+import { eventAPI } from './eventAPI';
+import EventDetail from './EventDetail';
+import { Event } from './Event';
 import { useParams } from 'react-router-dom';
 
-function ProjectPage(props: any) {
+function EventPage(props: any) {
   const [loading, setLoading] = useState(false);
-  const [project, setProject] = useState<Project | null>(null);
+  const [event, setEvent] = useState<Event | null>(null);
   const [error, setError] = useState<string | null>(null);
   const params = useParams();
   const id = Number(params.id);
 
   useEffect(() => {
     setLoading(true);
-    projectAPI
+    eventAPI
       .find(id)
       .then((data) => {
-        setProject(data);
+        setEvent(data);
         setLoading(false);
       })
       .catch((e) => {
@@ -28,7 +28,7 @@ function ProjectPage(props: any) {
   return (
     <div>
       <>
-        <h1>Project Detail</h1>
+        <h1>Event Detail</h1>
 
         {loading && (
           <div className="center-page">
@@ -49,10 +49,10 @@ function ProjectPage(props: any) {
           </div>
         )}
 
-        {project && <ProjectDetail project={project} />}
+        {event && <EventDetail event={event} />}
       </>
     </div>
   );
 }
 
-export default ProjectPage;
+export default EventPage;

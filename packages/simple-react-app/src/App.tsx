@@ -7,10 +7,9 @@ import DarkMode from './react-dark-mode/src/DarkMode';
 import HomePage from "./home/HomePage";
 import Example from './examples/ExamplesPage';
 import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
-import GownoPage from './gowno/GownoPage';
 import ExamplePage from './examples/ExamplesPage';
-import ProjectsPage from "./events/ProjectsPage";
-import ProjectPage from "./events/ProjectPage";
+import EventsPage from "./events/EventsPage";
+import EventPage from "./events/EventPage";
 
 
 function App() {
@@ -32,10 +31,6 @@ function App() {
             Examples
           </NavLink>
 
-          <NavLink to="/gowno" className="button rounded">
-            Gowno
-          </NavLink>
-
           <NavLink to="/events" className="button rounded">
             Events
           </NavLink>
@@ -52,9 +47,8 @@ function App() {
           <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/examples' element={<ExamplePage />} />
-            <Route path='/gowno' element={<GownoPage />} />
-            <Route path="/events" element={<ProjectsPage />} />
-            <Route path="/event/:id" element={<ProjectPage />} />
+            <Route path="/events" element={<EventsPage />} />
+            <Route path="/event/:id" element={<EventPage />} />
 
           </Routes>
         </div>

@@ -1,11 +1,10 @@
 import React, {Fragment, useState, useEffect} from 'react';
-import { MOCK_PROJECTS } from './MockProjects';
-import ProjectList from './ProjectLists';
-import { Project } from './Project';
-import { projectAPI } from './projectAPI';
+import EventList from './EventLists';
+import { Event } from './Event';
+import { eventAPI } from './eventAPI';
 
-function ProjectsPage() {
-  const [projects, setProjects] = useState<Project[]>([]);
+function EventsPage() {
+  const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | undefined>(undefined);
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,14 +12,14 @@ function ProjectsPage() {
 
   
   useEffect(() => {
-      async function loadProjects() {
+      async function loadEvents() {
         setLoading(true);
         try {
-          const data = await projectAPI.get(currentPage);
+          const data = await eventAPI.get(currentPage);
           if (currentPage === 1) {
-              setProjects(data);
+              setEvents(data);
             } else {
-              setProjects((projects) => [...projects, ...data]);
+              setEvents((events) => [...events, ...data]);
             }
         }
           catch (e) {
@@ -31,7 +30,7 @@ function ProjectsPage() {
           setLoading(false);
         }
       }
-      loadProjects();
+      loadEvents();
     }, [currentPage]);
   
 
@@ -39,14 +38,14 @@ function ProjectsPage() {
     setCurrentPage((currentPage) => currentPage + 1);
   };
 
-  const saveProject = (project: Project) => {
-    projectAPI
-     .put(project)
-     .then((updatedProject) => {
-       let updatedProjects = projects.map((p: Project) => {
-         return p.id === project.id ? new Project(updatedProject) : p;
+  const saveProject = (event: Event) => {
+    eventAPI
+     .put(event)
+     .then((updatedEvent) => {
+       let updatedEvents = events.map((p: Event) => {
+         return p.id === event.id ? new Event(updatedEvent) : p;
        });
-       setProjects(updatedProjects);
+       setEvents(updatedEvents);
      })
      .catch((e) => {
         if (e instanceof Error) {
@@ -57,7 +56,7 @@ function ProjectsPage() {
 
   return (
     <Fragment>
-    <h1>Projects</h1>
+    <h1>Events</h1>
 
       {error && (
       <div className="row">
@@ -72,7 +71,7 @@ function ProjectsPage() {
       </div>
       )}
 
-      <ProjectList onSave={saveProject} projects={projects} />
+      <EventList onSave={saveProject} projects={events} />
 
       {!loading && !error && (
         <div className="row">
@@ -97,4 +96,4 @@ function ProjectsPage() {
     );
 }
 
-export default ProjectsPage;
+export default EventsPage;

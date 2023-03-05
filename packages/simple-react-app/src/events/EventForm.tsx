@@ -1,28 +1,30 @@
 import React, {SyntheticEvent, useState} from "react";
-import { Project } from "./Project";
+import { Event } from "./Event";
 
-interface ProjectFormProps{
-    project: Project;
-    onSave: (project: Project) => void;
+interface EventFormProps{
+    event: Event;
+    onSave: (event: Event) => void;
     onCancel: () => void;
 }
 
-function ProjectForm({
-    project: initialProject,
+function EventForm({
+    event: initialEvent,
     onSave,
     onCancel,
-  }: ProjectFormProps) {
-    const [project, setProject] = useState(initialProject);
+  }: EventFormProps) {
+    const [newEvent, setEvent] = useState(initialEvent);
     const [errors, setErrors] = useState({
         name: '',
         description: '',
         budget: '',
+        latitude: '',
+        longtitude: ''
     });
 
     const handleSubmit = (event: SyntheticEvent) => {
         event.preventDefault();
         if (!isValid()) return;
-            onSave(project);
+            onSave(newEvent);
     };
   
      const handleChange = (event: any) => {
@@ -39,33 +41,36 @@ function ProjectForm({
          [name]: updatedValue,
        };
    
-       let updatedProject: Project;
+       let updatedEvent: Event;
        // need to do functional update b/c
        // the new project state is based on the previous project state
        // so we can keep the project properties that aren't being edited  like project.id
        // the spread operator (...) is used to
        // spread the previous project properties and the new change
-       setProject((p) => {
-         updatedProject = new Project({ ...p, ...change });
-         return updatedProject;
+       setEvent((p) => {
+         updatedEvent = new Event({ ...p, ...change });
+         return updatedEvent;
        });
 
-       setErrors(() => validate(updatedProject));
+       setErrors(() => validate(updatedEvent));
      };
   
-    function validate(project: Project) {
-        let errors: any = { name: '', description: '', budget: '' };
-        if (project.name.length === 0) {
+    function validate(event: Event) {
+        let errors: any = { name: '', description: '', latitude: '', longtitude: '' };
+        if (event.name.length === 0) {
         errors.name = 'Name is required';
         }
-        if (project.name.length > 0 && project.name.length < 3) {
+        if (event.name.length > 0 && event.name.length < 3) {
         errors.name = 'Name needs to be at least 3 characters.';
         }
-        if (project.description.length === 0) {
+        if (event.description.length === 0) {
         errors.description = 'Description is required.';
         }
-        if (project.budget === 0) {
-        errors.budget = 'Budget must be more than $0.';
+        if (event.latitude === 0) {
+          errors.latitude = 'Latitude must be more than $0.';
+        }
+        if (event.longtitude === 0) {
+          errors.longtitude = 'Longtitude must be more than $0.';
         }
         return errors;
     }
@@ -74,7 +79,8 @@ function ProjectForm({
         return (
         errors.name.length === 0 &&
         errors.description.length === 0 &&
-        errors.budget.length === 0
+        errors.latitude.length === 0 &&
+        errors.longtitude.length === 0
         );
     }
 
@@ -87,7 +93,7 @@ function ProjectForm({
             type="text"
             name="name"
             placeholder="enter name"
-            value={project.name}
+            value={newEvent.name}
             onChange={handleChange}
           />
            {errors.name.length > 0 && (
@@ -96,11 +102,11 @@ function ProjectForm({
              </div>
            )}
     
-          <label htmlFor="description">Project Description</label>
+          <label htmlFor="description">Event Description</label>
           <textarea
             name="description"
             placeholder="enter description"
-            value={project.description}
+            value={newEvent.description}
             onChange={handleChange}
           />
            {errors.description.length > 0 && (
@@ -108,26 +114,41 @@ function ProjectForm({
                <p>{errors.description}</p>
              </div>
            )}
-    
-          <label htmlFor="budget">Project Budget</label>
+
+          <label htmlFor="latitude">Latitude</label>
           <input
             type="number"
-            name="budget"
-            placeholder="enter budget"
-            value={project.budget}
+            name="latitude"
+            placeholder="enter latitude"
+            value={newEvent.latitude}
             onChange={handleChange}
           />
-           {errors.budget.length > 0 && (
+           {errors.latitude.length > 0 && (
              <div className="card error">
-               <p>{errors.budget}</p>
+               <p>{errors.latitude}</p>
              </div>
            )}
-    
+
+          <label htmlFor="longtitude">Longtitude</label>
+          <input
+            type="number"
+            name="longtitude"
+            placeholder="enter longtitude"
+            value={newEvent.longtitude}
+            onChange={handleChange}
+          />
+           {errors.longtitude.length > 0 && (
+             <div className="card error">
+               <p>{errors.longtitude}</p>
+             </div>
+           )}
+
+
           <label htmlFor="isActive">Active?</label>
           <input
             type="checkbox"
             name="isActive"
-            checked={project.isActive}
+            checked={newEvent.isActive}
             onChange={handleChange}
           />
           <div className="input-group">
@@ -141,5 +162,5 @@ function ProjectForm({
       );
     }
     
-    export default ProjectForm;
+    export default EventForm;
 

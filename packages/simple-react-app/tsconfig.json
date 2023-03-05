@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "src/projects/Event.ts"  ]
 }

@@ -1,6 +1,6 @@
-import { Project } from './Project';
+import { Event } from './Event';
 const baseUrl = 'http://localhost:4000';
-const url = `${baseUrl}/projects`;
+const url = `${baseUrl}/events`;
 //const url = `${baseUrl}/fail`;
 
 function translateStatusToErrorMessage(status: number) {
@@ -8,9 +8,9 @@ function translateStatusToErrorMessage(status: number) {
     case 401:
       return 'Please login again.';
     case 403:
-      return 'You do not have permission to view the project(s).';
+      return 'You do not have permission to view the event(s).';
     default:
-      return 'There was an error retrieving the project(s). Please try again.';
+      return 'There was an error retrieving the event(s). Please try again.';
   }
 }
 
@@ -41,22 +41,22 @@ function delay(ms: number) {
   };
 }
 
-function convertToProjectModels(data: any[]): Project[] {
-  let projects: Project[] = data.map(convertToProjectModel);
-  return projects;
+function convertToEventModels(data: any[]): Event[] {
+  let events: Event[] = data.map(convertToEventModel);
+  return events;
 }
 
-function convertToProjectModel(item: any): Project {
-  return new Project(item);
+function convertToEventModel(item: any): Event {
+  return new Event(item);
 }
 
-const projectAPI = {
+const eventAPI = {
 
   find(id: number) {
       return fetch(`${url}/${id}`)
         .then(checkStatus)
         .then(parseJSON)
-        .then(convertToProjectModel);
+        .then(convertToEventModel);
   },
     
 
@@ -65,19 +65,19 @@ const projectAPI = {
       .then(delay(600))
       .then(checkStatus)
       .then(parseJSON)
-      .then(convertToProjectModels)
+      .then(convertToEventModels)
       .catch((error: TypeError) => {
         console.log('log client error ' + error);
         throw new Error(
-          'There was an error retrieving the projects. Please try again.'
+          'There was an error retrieving the event. Please try again.'
         );
       });
   },
 
-  put(project: Project){
-    return fetch(`${url}/${project.id}`, {
+  put(event: Event){
+    return fetch(`${url}/${event.id}`, {
       method: 'PUT',
-      body: JSON.stringify(project),
+      body: JSON.stringify(event),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -87,10 +87,10 @@ const projectAPI = {
     .catch((error: TypeError) => {
         console.log('log client error ' + error);
         throw new Error(
-          'There was an error updating the project. Please try again.'
+          'There was an error updating the event. Please try again.'
         );
       });
   }
 };
 
-export { projectAPI };
+export { eventAPI };
