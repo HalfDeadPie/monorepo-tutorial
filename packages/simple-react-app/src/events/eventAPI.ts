@@ -1,5 +1,5 @@
 import { Event } from './Event';
-const baseUrl = 'http://localhost:4000';
+const baseUrl = 'http://localhost:3001';
 const url = `${baseUrl}/events`;
 //const url = `${baseUrl}/fail`;
 
@@ -31,6 +31,7 @@ function checkStatus(response: any) {
 }
 
 function parseJSON(response: Response) {
+  console.log(response.json);
   return response.json();
 }
 
@@ -42,6 +43,7 @@ function delay(ms: number) {
 }
 
 function convertToEventModels(data: any[]): Event[] {
+  console.log(data);
   let events: Event[] = data.map(convertToEventModel);
   return events;
 }

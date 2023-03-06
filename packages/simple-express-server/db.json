@@ -1,0 +1,31 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "name": "Vlckovce multifunkcne",
+      "description": "Dusanovi treba donest penaze",
+      "imageUrl": "/assets/vlckovce.jpg",
+      "latitude": 48.311464,
+      "longtitude": 18.0695023,
+      "isActive": false
+    },
+    {
+      "id": 2,
+      "name": "Bucany hala",
+      "description": "Vyjebana hala ktora je daleko",
+      "imageUrl": "/assets/bucany.jpg",
+      "latitude": 48.311464,
+      "longtitude": 18.0695023,
+      "isActive": true
+    },
+    {
+      "id": 3,
+      "name": "Bosaca",
+      "description": "Obyvacka Rasta Heviera",
+      "imageUrl": "/assets/bosaca.jpg",
+      "latitude": 48.311464,
+      "longtitude": 18.0695023,
+      "isActive": false
+    }
+  ]
+}

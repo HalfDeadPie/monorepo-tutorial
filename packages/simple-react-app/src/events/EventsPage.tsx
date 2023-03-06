@@ -15,6 +15,7 @@ function EventsPage() {
       async function loadEvents() {
         setLoading(true);
         try {
+
           const data = await eventAPI.get(currentPage);
           if (currentPage === 1) {
               setEvents(data);
@@ -57,6 +58,7 @@ function EventsPage() {
   return (
     <Fragment>
     <h1>Events</h1>
+    
 
       {error && (
       <div className="row">
