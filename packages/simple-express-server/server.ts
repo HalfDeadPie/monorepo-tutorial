@@ -8,14 +8,6 @@ export const routes = express.Router();
 
 routes.use(eventsRoute);
 
-routes.use((_req, res, next) => {
-  // Allow any website to connect
-  res.setHeader("Access-Control-Allow-Origin", "*");
-
-  // Continue to next middleware
-  next();
-});
-
 app.use(routes);
 
 app.get("/", (_req, res) => {
