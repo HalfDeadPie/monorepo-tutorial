@@ -2,7 +2,7 @@ import express from "express";
 const app = express();
 const port = 3001;
 import { QueryPayload } from '@my-namespace/simple-shared-data';
-import { eventsRoute } from "./Events";
+import { eventsRoute } from "./events";
 
 export const routes = express.Router();
 

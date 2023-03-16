@@ -2185,6 +2185,14 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
+"@okta/okta-react@^6.7.0":
+  version "6.7.0"
+  resolved "https://registry.yarnpkg.com/@okta/okta-react/-/okta-react-6.7.0.tgz#6d57de781b163cbe8ed31a3bece4fed136d37b54"
+  integrity sha512-jIx1dsPBsxYBqVcfW08dc/U1mPWG1Nswj6puRzykTBBIp3gEqLps/4dOuLx4aoWkMPkwx+fF1eXfzJvhq87NcA==
+  dependencies:
+    "@babel/runtime" "^7.11.2"
+    compare-versions "^4.1.2"
+
 "@pmmmwh/react-refresh-webpack-plugin@^0.5.3":
   version "0.5.3"
   resolved "https://registry.npmjs.org/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.5.3.tgz"
@@ -4077,6 +4085,11 @@ compare-func@^2.0.0:
   dependencies:
     array-ify "^1.0.0"
     dot-prop "^5.1.0"
+
+compare-versions@^4.1.2:
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/compare-versions/-/compare-versions-4.1.4.tgz#3571f4d610924d4414846a4183d386c8f3d51112"
+  integrity sha512-FemMreK9xNyL8gQevsdRMrvO4lFCkQP7qbuktn1q8ndcNk1+0mz7lgE7b/sNvbhVgY4w6tMN1FDp6aADjqw2rw==
 
 compressible@~2.0.16:
   version "2.0.18"

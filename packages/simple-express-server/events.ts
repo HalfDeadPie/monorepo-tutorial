@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { events } from './db.json';
-import { EventInterface } from '../simple-shared-data/EventInterface';
+import { EventInterface } from '@my-namespace/simple-shared-data/EventInterface';
 
 export const eventsRoute = Router();
 
